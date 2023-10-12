@@ -11,7 +11,6 @@ class ArbolUsuarios {
         this.raiz = null;
     }
 
-    // Método para buscar por ID
     buscar(id) {
         return this._buscarPorId(this.raiz, id);
     }
@@ -30,7 +29,6 @@ class ArbolUsuarios {
         }
     }
 
-    // Método para insertar un usuario
     insertar(usuario) {
         this.raiz = this._insertarUsuario(this.raiz, usuario);
     }
@@ -41,7 +39,6 @@ class ArbolUsuarios {
         }
 
         if (usuario.id === nodo.usuario.id) {
-            // No se permite la inserción de IDs duplicados
             return nodo;
         } else if (usuario.id < nodo.usuario.id) {
             nodo.izquierda = this._insertarUsuario(nodo.izquierda, usuario);
@@ -52,7 +49,6 @@ class ArbolUsuarios {
         return nodo;
     }
 
-    // Método para eliminar por ID
     eliminar(id) {
         this.raiz = this._eliminarPorId(this.raiz, id);
     }
@@ -74,7 +70,7 @@ class ArbolUsuarios {
                 return nodo.izquierda;
             }
 
-            // Nodo con dos hijos, obtener el sucesor inorden (el más pequeño en el subárbol derecho)
+            
             nodo.usuario = this._encontrarMenorValor(nodo.derecha);
             nodo.derecha = this._eliminarPorId(nodo.derecha, nodo.usuario.id);
         }
@@ -89,7 +85,7 @@ class ArbolUsuarios {
         return nodo.usuario;
     }
 
-    // Método para actualizar por ID
+
     actualizar(id, nuevoUsuario) {
         const usuarioExistente = this.buscar(id);
         if (usuarioExistente) {
@@ -99,28 +95,28 @@ class ArbolUsuarios {
     }
 }
 
-// Ejemplo de uso
+
 const arbol = new ArbolUsuarios();
 
 const usuario1 = {
     id: 1,
-    usuario: "Usuario1",
-    password: "pass1",
-    nombre: "Nombre1",
-    apellidos: "Apellido1"
+    usuario: "231183",
+    password: "gab231183",
+    nombre: "Angel",
+    apellidos: "Gabriel"
 };
 
 const usuario2 = {
     id: 2,
-    usuario: "Usuario2",
-    password: "pass2",
-    nombre: "Nombre2",
-    apellidos: "Apellido2"
+    usuario: "202020",
+    password: "gab2020",
+    nombre: "Samuel",
+    apellidos: "Morales"
 };
 
 arbol.insertar(usuario1);
 arbol.insertar(usuario2);
 
-console.log(arbol.buscar(1)); // Buscar por ID
-arbol.eliminar(1); // Eliminar por ID
-console.log(arbol.buscar(2)); // Intentar buscar después de la eliminación
+console.log(arbol.buscar(1));
+arbol.eliminar();
+console.log(arbol.buscar(2));
